@@ -57,5 +57,17 @@ final class NewsListViewController: UIViewController {
                 cell.configure(article)
             }
             .disposed(by: disposeBag)
+        
+        // Handle selection to show details
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Article.self))
+            .subscribe(onNext: { [weak self] indexPath, article in
+                guard let self = self else { return }
+                self.tableView.deselectRow(at: indexPath, animated: true)
+                // Initialize your detail view controller with the selected article
+                let detailVC = NewsDetailViewController(article: article)
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
+
