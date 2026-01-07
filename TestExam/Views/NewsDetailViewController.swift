@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 final class NewsDetailViewController: UIViewController {
 
@@ -16,6 +17,9 @@ final class NewsDetailViewController: UIViewController {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let imageView = UIImageView()
+    private let metaLabel = UILabel()
+    private let contentLabel = UILabel()
+    private let openButton = UIButton(type: .system)
     private static let imageCache = NSCache<NSURL, UIImage>()
 
     init(article: Article) {
@@ -82,13 +86,38 @@ final class NewsDetailViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .secondaryLabel
 
+        // Meta label
+        metaLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        metaLabel.numberOfLines = 0
+        metaLabel.textColor = .secondaryLabel
+
+        // Content label
+        contentLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        contentLabel.numberOfLines = 0
+        contentLabel.textColor = .label
+
+        // Open button
+        openButton.setTitle("Read Full Article", for: .normal)
+        openButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside)
+
         contentView.addArrangedSubview(titleLabel)
+        contentView.addArrangedSubview(metaLabel)
         contentView.addArrangedSubview(descriptionLabel)
+        contentView.addArrangedSubview(contentLabel)
+        contentView.addArrangedSubview(openButton)
     }
 
     private func configure(with article: Article) {
         titleLabel.text = article.title
         descriptionLabel.text = article.description ?? ""
+
+        let sourceName = article.source?.name ?? "Unknown"
+        if let dateText = article.formattedDate {
+            metaLabel.text = "By \(article.displayAuthor) — \(sourceName) — \(dateText)"
+        } else {
+            metaLabel.text = "By \(article.displayAuthor) — \(sourceName)"
+        }
+        contentLabel.text = article.content ?? ""
 
         // Reset image state
         imageView.image = nil
@@ -119,5 +148,10 @@ final class NewsDetailViewController: UIViewController {
             }
             task.resume()
         }
+    }
+
+    @objc private func openArticle() {
+        guard let url = URL(string: article.url) else { return }
+        UIApplication.shared.open(url)
     }
 }

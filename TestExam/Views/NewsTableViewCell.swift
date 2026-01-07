@@ -122,7 +122,18 @@ final class NewsTableViewCell: UITableViewCell {
     // MARK: - Configure
     func configure(_ article: Article) {
         titleLabel.text = article.title
-        subtitleLabel.text = article.description
+
+        let sourceName = article.source?.name?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let dateText = article.formattedDate
+        if let name = sourceName, !name.isEmpty, let dateText = dateText {
+            subtitleLabel.text = "\(name) • \(dateText)"
+        } else if let name = sourceName, !name.isEmpty {
+            subtitleLabel.text = name
+        } else if let dateText = dateText {
+            subtitleLabel.text = dateText
+        } else {
+            subtitleLabel.text = article.description
+        }
 
         // Load image if available
         if let urlString = article.urlToImage, let url = URL(string: urlString) {
