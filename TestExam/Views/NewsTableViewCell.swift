@@ -60,6 +60,7 @@ final class NewsTableViewCell: UITableViewCell {
         setupViews()
         setupLayout()
         configureSelection()
+        accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }

@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
 
         let window = UIWindow(windowScene: windowScene)
+        window.backgroundColor = .white
+        window.overrideUserInterfaceStyle = .light
         let coordinator = AppCoordinator(window: window)
         coordinator.start()
 
