@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 
+
 final class NewsDetailViewController: UIViewController {
 
     private let article: Article
@@ -152,6 +153,13 @@ final class NewsDetailViewController: UIViewController {
 
     @objc private func openArticle() {
         guard let url = URL(string: article.url) else { return }
-        UIApplication.shared.open(url)
+        let webVC = WebViewController(url: url, title: article.source?.name ?? "Article")
+        if let nav = navigationController {
+            nav.pushViewController(webVC, animated: true)
+        } else {
+            let nav = UINavigationController(rootViewController: webVC)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
+        }
     }
 }
