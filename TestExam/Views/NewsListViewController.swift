@@ -32,7 +32,19 @@ final class NewsListViewController: UIViewController {
 
     private func setupTable() {
         view.addSubview(tableView)
-        tableView.frame = view.bounds
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        tableView.backgroundColor = .systemBackground
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 120
+        tableView.rowHeight = UITableView.automaticDimension
+
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
