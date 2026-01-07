@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		344D4CB82F0E032400C93365 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 344D4CB72F0E032400C93365 /* RxCocoa */; };
+		344D4CBA2F0E032400C93365 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 344D4CB92F0E032400C93365 /* RxSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		344D4C692F0DFED400C93365 /* TestExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344D4CBA2F0E032400C93365 /* RxSwift in Frameworks */,
+				344D4CB82F0E032400C93365 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = TestExam;
 			packageProductDependencies = (
+				344D4CB72F0E032400C93365 /* RxCocoa */,
+				344D4CB92F0E032400C93365 /* RxSwift */,
 			);
 			productName = TestExam;
 			productReference = 344D4C692F0DFED400C93365 /* TestExam.app */;
@@ -107,6 +116,9 @@
 			);
 			mainGroup = 344D4C602F0DFED400C93365;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				344D4CB62F0E032400C93365 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 344D4C6A2F0DFED400C93365 /* Products */;
 			projectDirPath = "";
@@ -345,6 +357,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		344D4CB62F0E032400C93365 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		344D4CB72F0E032400C93365 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 344D4CB62F0E032400C93365 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		344D4CB92F0E032400C93365 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 344D4CB62F0E032400C93365 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 344D4C612F0DFED400C93365 /* Project object */;
 }
